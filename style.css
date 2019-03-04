@@ -1,0 +1,18 @@
+.buttonDetail{
+    margin: 0.5rem 0.5rem;
+}
+.title-detail{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+.submission-box{
+    padding-top: 2rem;
+    border: 1px solid rgb(209, 208, 208);
+    margin-left: 0.2rem;
+    margin-bottom: 1rem;
+}
+.buttons-box{
+    border: 1px solid rgb(209, 208, 208);
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
+}
