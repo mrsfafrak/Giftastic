@@ -15,13 +15,20 @@ function renderButtons() {
 //click listener event for when submit button is clicked to add a food
 $("#add-food").on("click", function (event) {
     event.preventDefault();
+    $("#no-entry").text("");
     var food = $("#food-input").val().trim();
-    topics.push(food);
-    renderButtons();
+    if (food === "") {
+        $("#no-entry").text("You didn't type anything. Try again.");
+    } else {
+        topics.push(food);
+        renderButtons();
+    }
 })
 //on click event to add still GIFs to page
 // needed this coding to account for dynamically 
 $(document).on("click", ".buttonDetail", function () {
+    $("#no-entry").text("");
+    $("#statement").text("");
     $("#gifs-here").empty();
     var foodItem = $(this).text();
     console.log(foodItem);
@@ -31,7 +38,7 @@ $(document).on("click", ".buttonDetail", function () {
     $.ajax({
         url: queryURL,
         method: "GET"
-    // once request is received from GIPHY this function will 'then' fire
+        // once request is received from GIPHY this function will 'then' fire
     }).then(function (response) {
         var results = response.data
         for (var i = 0; i < results.length; i++) {
@@ -43,8 +50,8 @@ $(document).on("click", ".buttonDetail", function () {
             foodImage.attr("data-still", results[i].images.fixed_height_still.url);
             foodImage.attr("data-state", "still");
             foodDiv.attr("class", "gifDetail");
-            foodDiv.append(p);
             foodDiv.append(foodImage);
+            foodDiv.append(p);
             $("#gifs-here").prepend(foodDiv);
         }
         // click event for imgs of GIFs to get them to animate or stop
@@ -53,8 +60,8 @@ $(document).on("click", ".buttonDetail", function () {
             if (state === "still") {
                 $(this).attr("src", $(this).attr("data-animate"));
                 $(this).attr("data-state", "animate");
-            } 
-            if (state === "animate"){
+            }
+            if (state === "animate") {
                 $(this).attr("src", $(this).attr("data-still"));
                 $(this).attr("data-state", "still");
             }
