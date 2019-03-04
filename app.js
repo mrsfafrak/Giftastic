@@ -1,14 +1,13 @@
 var topics = ["hamburger", "strawberry", "broccoli", "ice cream", "bread", "milk", "zucchini", "carrots", "ketchup", "jelly", "almonds", "chips", "potato", "chicken"]
 //intitially renders the food buttons from array above when page is loaded
 renderButtons();
-
-//function to add array of food topics to DOM
+//function to add array of food topics to page
 function renderButtons() {
     $("#food-input").val("");
     $("#buttons").empty();
     for (var i = 0; i < topics.length; i++) {
         var newButton = $("<button>");
-        newButton.attr("class", "buttonDetail");
+        newButton.attr("class", "buttonDetail btn btn-light");
         newButton.text(topics[i]);
         $("#buttons").append(newButton);
     };
@@ -20,7 +19,6 @@ $("#add-food").on("click", function (event) {
     topics.push(food);
     renderButtons();
 })
-
 //on click event to add still GIFs to page
 // needed this coding to account for dynamically 
 $(document).on("click", ".buttonDetail", function () {
@@ -33,8 +31,8 @@ $(document).on("click", ".buttonDetail", function () {
     $.ajax({
         url: queryURL,
         method: "GET"
+    // once request is received from GIPHY this function will 'then' fire
     }).then(function (response) {
-        console.log(response);
         var results = response.data
         for (var i = 0; i < results.length; i++) {
             var foodDiv = $("<div>")
@@ -49,6 +47,7 @@ $(document).on("click", ".buttonDetail", function () {
             foodDiv.append(foodImage);
             $("#gifs-here").prepend(foodDiv);
         }
+        // click event for imgs of GIFs to get them to animate or stop
         $("img").on("click", function () {
             var state = $(this).attr("data-state");
             if (state === "still") {
@@ -59,10 +58,6 @@ $(document).on("click", ".buttonDetail", function () {
                 $(this).attr("src", $(this).attr("data-still"));
                 $(this).attr("data-state", "still");
             }
-
         })
-
-
     })
-
 })
