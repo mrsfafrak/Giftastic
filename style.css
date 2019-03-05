@@ -1,11 +1,11 @@
 button,#add-food{
    font-family: 'Nova Mono', monospace; 
 } 
-h1,h3,h6,p,label{
+h1,h3,h6,p,label,h5{
     font-family: 'Major Mono Display', monospace;
     color: white;
 }
-h3{
+h3,h5,#add-food,#no-entry{
     margin-top: 0.5rem;
 }
 body{
