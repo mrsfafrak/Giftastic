@@ -33,7 +33,7 @@ $(document).on("click", ".buttonDetail", function () {
     var foodItem = $(this).text();
     console.log(foodItem);
     // my api_key: Qp3FBK3aCd1alvqSLL708uYBW9KA4m2I
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Qp3FBK3aCd1alvqSLL708uYBW9KA4m2I&limit=10&q=" + foodItem;
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Qp3FBK3aCd1alvqSLL708uYBW9KA4m2I&limit=10&rating=g&rating=pg&q=" + foodItem;
     console.log(queryURL);
     $.ajax({
         url: queryURL,
